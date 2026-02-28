@@ -125,16 +125,3 @@ to:recruiter@company.com       # Theo nguoi nhan
 after:2024/01/01               # Sau ngay cu the
 in:sent (CV OR resume OR apply) # Ket hop nhieu tu khoa
 ```
-
----
-
-## Bao mat
-
-| File | Commit duoc khong? | Ly do |
-|------|--------------------|-------|
-| `.env` | Khong | Chua duong dan tuyet doi |
-| `credentials.json` | Khong | OAuth client secret |
-| `token.json` | Khong | Access token |
-| `server_config.json` | Co | Chi chua descriptions |
-| `mcp_config.json` | Co | Chi chua template |
-| `.env.example` | Co | Template khong co gia tri that |
