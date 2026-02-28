@@ -73,12 +73,3 @@ claude mcp add spotify-mcp -- "$(pwd)/venv/bin/python3" "$(pwd)/spotify_mcp_serv
 | `get_now_playing` | Bai dang phat hien tai |
 | `get_top_tracks` | Top bai hat nghe nhieu nhat |
 | `control_playback` | Play/pause/next/previous |
-
-## Bao mat
-
-| File | Commit duoc? | Ly do |
-|------|-------------|-------|
-| `.env` | Khong | Spotify credentials |
-| `.spotify_cache` | Khong | OAuth token |
-| `server_config.json` | Co | Chi chua descriptions |
-| `.env.example` | Co | Template |
