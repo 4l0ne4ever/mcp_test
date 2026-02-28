@@ -1,0 +1,15 @@
+{
+    "mcpServers": {
+        "gmail-mcp": {
+            "command": "${GMAIL_VENV_PYTHON}",
+            "args": [
+                "${GMAIL_SERVER_PATH}",
+                "--stdio"
+            ],
+            "env": {
+                "GMAIL_CREDENTIALS_FILE": "${GMAIL_CREDENTIALS_FILE}",
+                "GMAIL_TOKEN_FILE": "${GMAIL_TOKEN_FILE}"
+            }
+        }
+    }
+}

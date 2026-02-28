@@ -1,0 +1,10 @@
+# Sensitive files — never commit these
+.env
+credentials.json
+token.json
+.mcp.json
+__pycache__/
+*.pyc
+.DS_Store
+venv/
+img/

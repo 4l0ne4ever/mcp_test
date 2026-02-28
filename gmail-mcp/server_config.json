@@ -1,0 +1,76 @@
+{
+    "server": {
+        "name": "gmail-mcp",
+        "version": "1.0.0",
+        "description": "Gmail MCP Server — search, read, and reply to emails via Gmail API"
+    },
+    "gmail": {
+        "scopes": [
+            "https://www.googleapis.com/auth/gmail.readonly",
+            "https://www.googleapis.com/auth/gmail.send",
+            "https://www.googleapis.com/auth/gmail.modify"
+        ]
+    },
+    "tools": {
+        "search_emails": {
+            "description": "Search emails in Gmail using a query string. Returns a list of matching emails with metadata.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Gmail search query, e.g. 'subject:application to:company@example.com' or 'in:sent to:recruiter'"
+                    },
+                    "max_results": {
+                        "type": "integer",
+                        "description": "Maximum number of results to return (default: 5)",
+                        "default": 5
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "get_email": {
+            "description": "Get full details of a specific email by its Gmail message ID. Returns sender, recipient, date, subject, and full body.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "email_id": {
+                        "type": "string",
+                        "description": "The Gmail message ID (obtained from search_emails)"
+                    }
+                },
+                "required": [
+                    "email_id"
+                ]
+            }
+        },
+        "reply_email": {
+            "description": "Reply to an existing email thread via Gmail API. Does NOT use Gmail UI. Preserves thread context using In-Reply-To and References headers.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "email_id": {
+                        "type": "string",
+                        "description": "The Gmail message ID to reply to"
+                    },
+                    "reply_body": {
+                        "type": "string",
+                        "description": "The plain-text body of your reply message"
+                    }
+                },
+                "required": [
+                    "email_id",
+                    "reply_body"
+                ]
+            }
+        }
+    },
+    "prompts": {
+        "no_emails_found": "No emails found matching your query.",
+        "reply_success": "Reply sent successfully via Gmail API!",
+        "unknown_tool": "Unknown tool requested: {tool_name}"
+    }
+}
