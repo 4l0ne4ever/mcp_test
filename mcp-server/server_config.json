@@ -1,0 +1,105 @@
+{
+    "server": {
+        "name": "spotify-mcp",
+        "version": "1.0.0",
+        "description": "Spotify MCP Server — search, get now playing, top tracks, and playback control via Spotify Web API"
+    },
+    "spotify": {
+        "scopes": [
+            "user-read-playback-state",
+            "user-modify-playback-state",
+            "user-read-currently-playing",
+            "user-top-read",
+            "playlist-read-private"
+        ]
+    },
+    "tools": {
+        "search_tracks": {
+            "description": "Search for tracks, artists, or albums on Spotify.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Search query, e.g. 'Bohemian Rhapsody' or 'artist:Queen'"
+                    },
+                    "search_type": {
+                        "type": "string",
+                        "description": "Type of search: track, artist, album (default: track)",
+                        "enum": [
+                            "track",
+                            "artist",
+                            "album"
+                        ],
+                        "default": "track"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Max results to return (default: 5)",
+                        "default": 5
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "get_now_playing": {
+            "description": "Get the currently playing track on the user's active Spotify device.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {}
+            }
+        },
+        "get_top_tracks": {
+            "description": "Get the user's top tracks based on listening history.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "time_range": {
+                        "type": "string",
+                        "description": "Time range: short_term (4 weeks), medium_term (6 months), long_term (all time). Default: medium_term",
+                        "enum": [
+                            "short_term",
+                            "medium_term",
+                            "long_term"
+                        ],
+                        "default": "medium_term"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Number of tracks to return (default: 10)",
+                        "default": 10
+                    }
+                }
+            }
+        },
+        "control_playback": {
+            "description": "Control Spotify playback: play, pause, next, or previous track. Requires an active Spotify device.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "description": "Playback action to perform",
+                        "enum": [
+                            "play",
+                            "pause",
+                            "next",
+                            "previous"
+                        ]
+                    }
+                },
+                "required": [
+                    "action"
+                ]
+            }
+        }
+    },
+    "prompts": {
+        "no_results": "No results found for your query.",
+        "no_playback": "No active playback. Open Spotify on any device first.",
+        "playback_success": "Playback action completed successfully.",
+        "unknown_tool": "Unknown tool: {tool_name}"
+    }
+}
